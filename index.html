@@ -13,16 +13,25 @@
         h1 {
             color: #333;
         }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
         .button {
-            display: inline-block;
-            padding: 15px 30px;
+            padding: 20px;
             font-size: 20px;
             font-weight: bold;
             border: none;
             cursor: pointer;
-            margin: 10px;
             border-radius: 8px;
-            width: 150px;
+            width: 160px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         /* Coca-Cola */
         .coca-cola {
@@ -53,10 +62,12 @@
     <h1>Automat na nápoje</h1>
     <p>Zvolte nápoj:</p>
 
-    <button class="button coca-cola">Coca-Cola</button>
-    <button class="button ice-tea">Ice Tea</button>
-    <button class="button sprite">Sprite</button>
-    <button class="button mirinda">Mirinda</button>
+    <div class="container">
+        <button class="button coca-cola">Coca-Cola</button>
+        <button class="button ice-tea">Ice Tea</button>
+        <button class="button sprite">Sprite</button>
+        <button class="button mirinda">Mirinda</button>
+    </div>
 
 </body>
 </html>
