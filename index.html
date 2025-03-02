@@ -4,20 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Automat na nápoje</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        button { font-size: 20px; margin: 10px; padding: 10px 20px; cursor: pointer; }
+    </style>
 </head>
 <body>
     <h2>Vyber si nápoj</h2>
-    <button onclick="sendRequest(1)">Nápoj 1</button><br>
-    <button onclick="sendRequest(2)">Nápoj 2</button><br>
-    <button onclick="sendRequest(3)">Nápoj 3</button><br>
-    <button onclick="sendRequest(4)">Nápoj 4</button><br>
+    <button onclick="sendRequest(1)">Nápoj 1</button>
+    <button onclick="sendRequest(2)">Nápoj 2</button>
+    <button onclick="sendRequest(3)">Nápoj 3</button>
+    <button onclick="sendRequest(4)">Nápoj 4</button>
+
+    <p id="status"></p>
 
     <script>
+        const ESP_IP = "http://192.168.0.141";  // Nastav správnou IP ESP32
+
         function sendRequest(num) {
-            fetch(`http://192.168.0.141/relay?num=${num}`)
+            fetch(`${ESP_IP}/relay?num=${num}`)
                 .then(response => response.text())
-                .then(data => console.log(data))
-                .catch(error => console.error("Chyba při odesílání požadavku: ", error));
+                .then(data => {
+                    document.getElementById("status").innerText = "ESP odpovědělo: " + data;
+                    console.log("Odpověď ESP:", data);
+                })
+                .catch(error => {
+                    document.getElementById("status").innerText = "Chyba připojení k ESP!";
+                    console.error("Chyba při odeslání požadavku:", error);
+                });
         }
     </script>
 </body>
