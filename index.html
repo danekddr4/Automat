@@ -4,41 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Automat na nápoje</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #f0f0f0; }
-        h1 { margin-top: 20px; }
-        .container { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
-        .button {
-            width: 120px; height: 60px; margin: 10px; font-size: 20px; font-weight: bold;
-            border: none; cursor: pointer; border-radius: 10px;
-        }
-        .cocacola { background-color: red; color: black; }
-        .icetea { background-color: green; color: white; }
-        .sprite { background-color: white; color: green; border: 2px solid green; }
-        .mirinda { background-color: orange; color: yellow; }
-    </style>
 </head>
 <body>
-
-    <h1>Automat na nápoje</h1>
-    <p>Zvolte nápoj:</p>
-    <div class="container">
-        <button class="button cocacola" onclick="sendRequest('cocacola')">Coca-Cola</button>
-        <button class="button icetea" onclick="sendRequest('icetea')">Ice Tea</button>
-        <button class="button sprite" onclick="sendRequest('sprite')">Sprite</button>
-        <button class="button mirinda" onclick="sendRequest('mirinda')">Mirinda</button>
-    </div>
+    <h2>Vyber si nápoj</h2>
+    <button onclick="sendRequest(1)">Nápoj 1</button><br>
+    <button onclick="sendRequest(2)">Nápoj 2</button><br>
+    <button onclick="sendRequest(3)">Nápoj 3</button><br>
+    <button onclick="sendRequest(4)">Nápoj 4</button><br>
 
     <script>
-        function sendRequest(drink) {
-            fetch(`http://192.168.0.141/drink?name=${drink}`, { 
-                method: 'GET',
-                mode: 'no-cors'
-            })
-            .then(() => alert(`Požadavek na ${drink} odeslán!`))
-            .catch(error => console.error("Chyba při odesílání požadavku:", error));
+        function sendRequest(num) {
+            fetch(`http://192.168.1.100/relay?num=${num}`)
+                .then(response => response.text())
+                .then(data => console.log(data));
         }
     </script>
-
 </body>
 </html>
