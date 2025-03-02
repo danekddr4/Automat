@@ -14,9 +14,10 @@
 
     <script>
         function sendRequest(num) {
-            fetch(`http://192.168.1.100/relay?num=${num}`)
+            fetch(`http://192.168.0.141/relay?num=${num}`)
                 .then(response => response.text())
-                .then(data => console.log(data));
+                .then(data => console.log(data))
+                .catch(error => console.error("Chyba při odesílání požadavku: ", error));
         }
     </script>
 </body>
