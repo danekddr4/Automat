@@ -5,21 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Automat na nápoje</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        .button { 
-            display: inline-block; padding: 20px; margin: 10px; 
-            font-size: 20px; background-color: #28a745; color: white; 
-            border: none; cursor: pointer; text-decoration: none;
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 8px;
+            width: 150px;
+        }
+        /* Coca-Cola */
+        .coca-cola {
+            background-color: red;
+            color: black;
+        }
+        /* Ice Tea */
+        .ice-tea {
+            background-color: green;
+            color: white;
+        }
+        /* Sprite */
+        .sprite {
+            background-color: white;
+            color: green;
+            border: 3px solid green;
+        }
+        /* Mirinda */
+        .mirinda {
+            background-color: orange;
+            color: yellow;
+            border: 3px solid yellow;
         }
     </style>
 </head>
 <body>
+
     <h1>Automat na nápoje</h1>
     <p>Zvolte nápoj:</p>
-    
-    <a href="order.php?drink=coca-cola" class="button">Coca-Cola</a>
-    <a href="order.php?drink=icetea" class="button">Ice Tea</a>
-    <a href="order.php?drink=mirinda" class="button">Mirinda</a>
-    <a href="order.php?drink=mix" class="button">Mix</a>
+
+    <button class="button coca-cola">Coca-Cola</button>
+    <button class="button ice-tea">Ice Tea</button>
+    <button class="button sprite">Sprite</button>
+    <button class="button mirinda">Mirinda</button>
+
 </body>
 </html>
