@@ -4,56 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ovládání automatu</title>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f4f4f4;
+            margin: 0;
             padding: 20px;
         }
         h1 {
             color: #333;
         }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
         .button {
-            font-size: 20px;
-            padding: 15px 30px;
-            margin: 10px;
+            width: 80%;
+            max-width: 300px;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
             border: none;
             color: white;
+            border-radius: 8px;
             cursor: pointer;
-            border-radius: 5px;
-            width: 200px;
+            transition: 0.3s;
         }
-        .cola { background-color: red; }
-        .icetea { background-color: green; }
+        .button:hover {
+            opacity: 0.8;
+        }
+        .cola { background-color: #d32f2f; }
+        .icetea { background-color: #388e3c; }
+        .mirinda { background-color: #ff9800; }
+        .sprite { background-color: #1976d2; }
     </style>
 </head>
 <body>
     <h1>Ovládání automatu</h1>
-    <button class="button cola" onclick="startDrink('cola')">Coca-Cola</button>
-    <button class="button icetea" onclick="startDrink('icetea')">Ice Tea</button>
+    <div class="button-container">
+        <button class="button cola" onclick="sendRequest('cola')">Coca-Cola</button>
+        <button class="button icetea" onclick="sendRequest('icetea')">Ice Tea</button>
+        <button class="button mirinda" onclick="sendRequest('mirinda')">Mirinda</button>
+        <button class="button sprite" onclick="sendRequest('sprite')">Sprite</button>
+    </div>
 
     <script>
-        const firebaseConfig = {
-            apiKey: "TVŮJ_API_KEY",
-            authDomain: "TVŮJ_AUTH_DOMAIN",
-            databaseURL: "TVŮJ_DATABASE_URL",
-            projectId: "TVŮJ_PROJECT_ID",
-            storageBucket: "TVŮJ_STORAGE_BUCKET",
-            messagingSenderId: "TVŮJ_MESSAGING_SENDER_ID",
-            appId: "TVŮJ_APP_ID"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
-
-        function startDrink(drink) {
-            db.ref("/").update({
-                "drink": drink,
-                "status": "pouring"
-            });
-            alert(drink.charAt(0).toUpperCase() + drink.slice(1) + " se připravuje!");
+        function sendRequest(drink) {
+            fetch("https://automat-7b66a-default-rtdb.europe-west1.firebasedatabase.app/.json", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ drink: drink, status: "ready", time: "10s" })
+            }).then(response => console.log("Odesláno:", drink))
+            .catch(error => console.error("Chyba:", error));
         }
     </script>
 </body>
