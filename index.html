@@ -1,18 +1,144 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drinkomat</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Automat na nápoje</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .container {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .header {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 24px 32px;
+    text-align: center;
+  }
+
+  .card h1 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    color: #d32f2f;
+  }
+
+  .price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 24px;
+  }
+
+  form {
+    margin: 0;
+  }
+
+  .btn {
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+
+  .btn:hover {
+    background-color: #b02727;
+  }
+
+  .btn:active {
+    background-color: #8b1f1f;
+  }
+
+  @media (max-width: 420px) {
+    .card {
+      padding: 20px 16px;
+    }
+
+    .btn {
+      padding: 12px;
+      font-size: 0.9rem;
+    }
+  }
+</style>
+<!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <h1>Vyber nápoj:</h1>
-    <div class="container">
-        <button id="cola">Čepovat Colu</button>
-        <button id="sprite">Čepovat Sprite</button>
-    </div>
+<div class="container">
+  <div class="header">Automat na nápoje</div>
+  <div class="card">
+    <h1>Coca-Cola</h1>
+    <div class="price">30 Kč</div>
+    <form method="GET" action="http://147.185.221.223:41510/create_payment">
+      <input type="hidden" name="PRODUCT_ID" value="13" />
+      <input type="hidden" name="DEVICE_ID" value="ESP32-001" />
+      <input type="hidden" name="NAME" value="Coca-Cola" />
+      <button class="btn" type="submit">Zaplatit &amp; Vydat</button>
+    </form>
+  </div>
+  <br>
+  <div class="card">
+    <h1>Sprite</h1>
+    <div class="price">30 Kč</div>
+    <form method="GET" action="http://147.185.221.223:41510/create_payment">
+      <input type="hidden" name="PRODUCT_ID" value="4" />
+      <input type="hidden" name="DEVICE_ID" value="ESP32-001" />
+      <input type="hidden" name="NAME" value="Sprite" />
+      <button class="btn" type="submit">Zaplatit &amp; Vydat</button>
+    </form>
+  </div><br>
+  <center><a href="http://147.185.221.223:41510/admin"><button class="btn" style="width:128px;height:56px;">Správa automatu</button></a>
+</div>
 
-    <script src="script.js"></script>
+<script>
+  // Funkce pro získání parametrů z URL
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  // Zkontrolovat parametr "status"
+  const status = getQueryParam('status');
+
+  if (status === '1') {
+    Swal.fire({
+      icon: 'success',
+      title: 'Zaplaceno',
+      text: 'Platba byla úspěšná.',
+      confirmButtonText: 'OK'
+    });
+  } else if (status === '2') {
+    Swal.fire({
+      icon: 'error',
+      title: 'Nezaplaceno',
+      text: 'Platba nebyla dokončena.',
+      confirmButtonText: 'OK'
+    });
+  }
+</script>
 </body>
 </html>
