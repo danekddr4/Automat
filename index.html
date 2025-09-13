@@ -13,18 +13,6 @@
     overflow: hidden;
   }
   /* Pozadí video - na celou obrazovku, za obsahem */
-  #bg-video {
-    position: fixed;
-    left: 0;
-    top: 0;
-    min-width: 100%; 
-    min-height: 100%;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    object-fit: cover;
-    filter: brightness(0.6); /* tmavší video, aby obsah byl lépe vidět */
-  }
 
   .container {
     position: relative;
@@ -95,7 +83,7 @@
 </head>
 <body>
   <!-- Pozadí video -->
-  <video autoplay loop muted playsinline id="bg-video" preload="auto">
+  <video autoplay loop muted playsinline style="position:fixed;width:100%;height:100%;z-index:1;top:0;left:0;" preload="auto">
     <source src="https://github.com/danekddr4/Automat/raw/refs/heads/main/test.mp4" type="video/mp4" />
     Vaše zařízení nepodporuje video tag.
   </video>
