@@ -5,53 +5,63 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Automat na nápoje</title>
 <style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f0f2f5;
+  body, html {
+    height: 100%;
     margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #000; /* fallback */
+    overflow: hidden;
+  }
+  /* Pozadí video - na celou obrazovku, za obsahem */
+  #bg-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    object-fit: cover;
+    filter: brightness(0.6); /* tmavší video, aby obsah byl lépe vidět */
   }
 
   .container {
+    position: relative;
     max-width: 400px;
     width: 100%;
+    margin: 20px auto;
+    z-index: 1;
   }
-
   .header {
     font-size: 2rem;
     font-weight: 700;
-    color: #333;
+    color: #fff;
     text-align: center;
     margin-bottom: 24px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.7);
   }
-
   .card {
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     padding: 24px 32px;
     text-align: center;
   }
-
   .card h1 {
     font-size: 1.8rem;
     margin-bottom: 16px;
     color: #d32f2f;
   }
-
   .price {
     font-size: 1.2rem;
     font-weight: 600;
     color: #444;
     margin-bottom: 24px;
   }
-
   form {
     margin: 0;
   }
-
   .btn {
     background-color: #d32f2f;
     color: white;
@@ -64,20 +74,16 @@
     transition: background-color 0.3s ease;
     width: 100%;
   }
-
   .btn:hover {
     background-color: #b02727;
   }
-
   .btn:active {
     background-color: #8b1f1f;
   }
-
   @media (max-width: 420px) {
     .card {
       padding: 20px 16px;
     }
-
     .btn {
       padding: 12px;
       font-size: 0.9rem;
@@ -88,6 +94,12 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+  <!-- Pozadí video -->
+  <video autoplay loop muted playsinline id="bg-video" preload="auto">
+    <source src="test.mp4" type="video/mp4" />
+    Vaše zařízení nepodporuje video tag.
+  </video>
+
 <div class="container">
   <div class="header">Automat na nápoje</div>
   <div class="card">
@@ -103,17 +115,14 @@
 <br>
   <center><a href="http://147.185.221.223:41510/admin"><button class="btn" style="width:128px;height:56px;">Správa automatu</button></a>
 </div>
-
 <script>
   // Funkce pro získání parametrů z URL
   function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
   }
-
   // Zkontrolovat parametr "status"
   const status = getQueryParam('status');
-
   if (status === '1') {
     Swal.fire({
       icon: 'success',
