@@ -140,13 +140,13 @@ body {
     gap: 25px;
     width: 100%;
     margin-bottom: 40px;
+    padding: 0;
 }
 
 @media (max-width: 768px) {
     .drink-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
-        padding: 0 10px;
     }
     
     .drink-card {
@@ -716,8 +716,8 @@ body {
     }
     
     .drink-grid {
+        grid-template-columns: repeat(2, 1fr);
         gap: 12px;
-        padding: 0 8px;
     }
     
     .drink-card {
