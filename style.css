@@ -142,6 +142,42 @@ body {
     margin-bottom: 40px;
 }
 
+@media (max-width: 768px) {
+    .drink-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .drink-card {
+        padding: 12px;
+        max-width: 180px;
+        margin: 0 auto;
+    }
+    
+    .drink-logo {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 8px;
+    }
+    
+    .brand-logo {
+        font-size: 0.8rem;
+        padding: 4px 10px;
+    }
+    
+    .price {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+    
+    .drink-form .btn-primary {
+        width: 85%;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+}
+
 .drink-card {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(20, 20, 40, 0.3) 100%);
     border-radius: 15px;
@@ -619,10 +655,6 @@ body {
         font-size: 1.8rem;
     }
     
-    .drink-grid {
-        grid-template-columns: 1fr;
-    }
-    
     .payment-section {
         padding: 20px;
     }
@@ -678,8 +710,35 @@ body {
     }
     
     .drink-logo {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
+        margin-bottom: 6px;
+    }
+    
+    .drink-grid {
+        gap: 12px;
+        padding: 0 8px;
+    }
+    
+    .drink-card {
+        padding: 10px;
+        max-width: 160px;
+    }
+    
+    .brand-logo {
+        font-size: 0.75rem;
+        padding: 3px 8px;
+    }
+    
+    .price {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+    
+    .drink-form .btn-primary {
+        width: 80%;
+        padding: 8px 12px;
+        font-size: 0.85rem;
     }
 }
 
